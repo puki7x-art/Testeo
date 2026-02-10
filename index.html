@@ -25,7 +25,6 @@ body{
   border:2px solid #7a2a38;
   color:#d4a3a3;
   padding:10px 16px;
-  font-family:"Playfair Display", serif;
   font-size:14px;
   cursor:pointer;
   z-index:999;
@@ -70,7 +69,7 @@ body{
   padding:100px 20px;
 }
 
-/* CARTA CERRADA */
+/* CARTA */
 .closed-letter{
   width:360px;
   height:220px;
@@ -83,24 +82,11 @@ body{
   color:#d4a3a3;
   cursor:pointer;
   box-shadow:0 0 60px rgba(0,0,0,0.9);
-  transition:1s;
-}
-.closed-letter:hover{
-  transform:scale(1.04);
 }
 
-/* PERGAMINO */
 .letter{
   max-width:460px;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.04) 1px,
-      transparent 2px,
-      transparent 6px
-    ),
-    #140b0e;
+  background:#140b0e;
   border:10px double #7a2a38;
   padding:60px;
   box-shadow:0 0 60px rgba(0,0,0,0.9);
@@ -109,7 +95,6 @@ body{
   display:none;
 }
 
-/* TITULO */
 h1{
   font-family:"Great Vibes", cursive;
   font-size:42px;
@@ -118,7 +103,6 @@ h1{
   color:#d4a3a3;
 }
 
-/* SECCIONES */
 .section{
   opacity:0;
   margin:32px 0;
@@ -126,27 +110,14 @@ h1{
 }
 .section.show{opacity:1;}
 
-.section p{
-  text-align:center;
-  font-style:italic;
-  font-size:17px;
-}
-
-/* FOTOS */
 .photo{
   border:3px solid #7a2a38;
   padding:10px;
-  background:#12080b;
 }
 .photo img{
   width:100%;
   opacity:0.45;
   filter:grayscale(100%);
-  transition:1.5s;
-}
-.photo img:hover{
-  opacity:1;
-  filter:none;
 }
 
 .caption{
@@ -156,7 +127,6 @@ h1{
   color:#caa2a2;
 }
 
-/* FIRMA */
 .signature{
   margin-top:40px;
   text-align:right;
@@ -173,104 +143,76 @@ h1{
 <!-- BOTON MUSICA -->
 <button class="music-btn" onclick="activateMusic()">🎵 Activar música</button>
 
-<!-- MUSICA -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f8a0c5c9b.mp3" type="audio/mpeg">
+<!-- MUSICA (SIN AUTOPLAY) -->
+<audio id="bgMusic" preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_7c0b6b3e8e.mp3" type="audio/mpeg">
 </audio>
 
-<!-- DECORACION -->
 <div class="decor">
   <div class="ornament tl">❦</div>
   <div class="ornament tr">❦</div>
   <div class="ornament bl">❦</div>
   <div class="ornament br">❦</div>
-
-  <div class="heart h1">❤</div>
-  <div class="heart black h2">❤</div>
-  <div class="heart h3">❤</div>
-  <div class="heart black h4">❤</div>
 </div>
 
 <div class="wrapper">
 
-  <!-- CARTA CERRADA -->
-  <div class="closed-letter" id="closed" onclick="openLetter()">❦</div>
+  <div class="closed-letter" onclick="openLetter()">❦</div>
 
-  <!-- CARTA ABIERTA -->
   <div class="letter" id="letter">
-
     <h1>Para mi amada Belén</h1>
 
-    <div class="section"><p>“Desde el instante en que mi alma reconoció la tuya, supe que no habría retorno.”</p></div>
+    <div class="section"><p>“Mi alma te reconoció antes que mi razón.”</p></div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
-      <div class="caption">Mi corazón aprendió tu nombre antes que mis labios.</div>
+      <div class="caption">Eternamente tuyo</div>
     </div>
-
-    <div class="section"><p>“No te amo con prisa, te amo con la paciencia de lo eterno.”</p></div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
-      <div class="caption">Tu presencia es mi refugio.</div>
+      <div class="caption">Donde estás, es hogar</div>
     </div>
-
-    <div class="section"><p>“Si el mundo oscurece, que sea tu mano la última certeza.”</p></div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
-      <div class="caption">Aun en silencio, te elijo.</div>
+      <div class="caption">Te elijo en cada vida</div>
     </div>
-
-    <div class="section"><p>“Para siempre no es promesa, es decisión.”</p></div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
-      <div class="caption">Donde estés, ahí es mi hogar.</div>
+      <div class="caption">Para siempre</div>
     </div>
 
-    <div class="signature" id="sign">— Con todo mi amor,<br>Augusto</div>
-
+    <div class="signature" id="sign">— Augusto</div>
   </div>
 </div>
 
 <script>
-let opened=false;
 let musicStarted=false;
 const music=document.getElementById("bgMusic");
 
 function activateMusic(){
   if(musicStarted) return;
   musicStarted=true;
-  music.volume=0;
+  music.volume=0.6;
   music.play();
-
-  let v=0;
-  const fade=setInterval(()=>{
-    v+=0.02;
-    music.volume=Math.min(v,0.4);
-    if(v>=0.4) clearInterval(fade);
-  },120);
 }
 
 function openLetter(){
-  if(!musicStarted) activateMusic();
+  activateMusic();
 
-  if(opened) return;
-  opened=true;
-
-  document.getElementById("closed").style.display="none";
+  document.querySelector(".closed-letter").style.display="none";
   const letter=document.getElementById("letter");
   letter.style.display="block";
 
-  const sections=document.querySelectorAll(".section");
-  sections.forEach((sec,i)=>{
-    setTimeout(()=>sec.classList.add("show"),800+i*1100);
+  document.querySelectorAll(".section").forEach((s,i)=>{
+    setTimeout(()=>s.classList.add("show"),600+i*800);
   });
 
   setTimeout(()=>{
     document.getElementById("sign").classList.add("show");
-  }, sections.length*1100+1200);
+  },4000);
 }
 </script>
 
