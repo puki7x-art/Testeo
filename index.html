@@ -10,75 +10,87 @@
 <style>
 body{
   margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at center,#120b0e,#050304);
+  background:radial-gradient(circle,#120b0e,#050304);
   font-family:"Playfair Display", serif;
   color:#e8dcdc;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
+  overflow-y:auto;
 }
 
-/* DECORACION GENERAL */
+/* CONTENEDOR */
+.wrapper{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:80px 20px;
+}
+
+/* DECORACION */
 .decor{
   position:fixed;
   inset:0;
   pointer-events:none;
 }
-
-/* CORAZONES */
-.heart{
-  position:absolute;
-  color:#5a1f2a;
-  font-size:26px;
-  opacity:0.35;
-}
-.heart.black{ color:#1a0e12; }
-
-.heart.h1{ top:8%; left:12%; }
-.heart.h2{ top:12%; right:15%; }
-.heart.h3{ bottom:10%; left:18%; }
-.heart.h4{ bottom:12%; right:14%; }
-
-/* ORNAMENTOS */
 .ornament{
   position:absolute;
-  font-size:46px;
+  font-size:42px;
   color:#7a2a38;
-  opacity:0.45;
+  opacity:0.35;
 }
-.ornament.tl{ top:30px; left:40px; }
-.ornament.tr{ top:30px; right:40px; }
-.ornament.bl{ bottom:30px; left:40px; }
-.ornament.br{ bottom:30px; right:40px; }
+.ornament.tl{top:30px;left:40px;}
+.ornament.tr{top:30px;right:40px;}
+.ornament.bl{bottom:30px;left:40px;}
+.ornament.br{bottom:30px;right:40px;}
 
-/* CARTA */
+.heart{
+  position:absolute;
+  font-size:24px;
+  opacity:0.3;
+  color:#5a1f2a;
+}
+.heart.black{color:#140b0e;}
+.h1{top:15%;left:12%;}
+.h2{top:18%;right:14%;}
+.h3{bottom:18%;left:18%;}
+.h4{bottom:15%;right:16%;}
+
+/* CARTA CERRADA */
+.closed-letter{
+  width:360px;
+  height:220px;
+  background:#2a0f14;
+  border:5px double #7a2a38;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+  color:#caa2a2;
+  cursor:pointer;
+  box-shadow:0 0 50px rgba(0,0,0,0.9);
+  transition:1s;
+}
+.closed-letter:hover{
+  transform:scale(1.03);
+}
+
+/* PERGAMINO */
 .letter{
-  max-width:440px;
+  max-width:460px;
   background:
     repeating-linear-gradient(
       to bottom,
-      rgba(255,255,255,0.035),
-      rgba(255,255,255,0.035) 1px,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.04) 1px,
       transparent 2px,
       transparent 6px
     ),
     #140b0e;
   border:10px double #7a2a38;
   padding:60px;
-  box-shadow:
-    0 0 60px rgba(0,0,0,0.9),
-    inset 0 0 30px rgba(0,0,0,0.6);
+  box-shadow:0 0 60px rgba(0,0,0,0.9);
   line-height:2;
-  cursor:pointer;
-  transform:scale(1);
-  transition:1.2s ease;
-  z-index:2;
-}
-.letter:hover{
-  transform:scale(1.02);
+  margin-top:40px;
+  display:none;
 }
 
 /* TITULO */
@@ -94,13 +106,14 @@ h1{
 .section{
   opacity:0;
   margin:32px 0;
-  transition:2s ease;
+  transition:2s;
 }
+.section.show{opacity:1;}
 
-/* FRASES */
+/* TEXTO */
 .section p{
-  font-style:italic;
   text-align:center;
+  font-style:italic;
   font-size:17px;
 }
 
@@ -121,22 +134,22 @@ h1{
   filter:none;
 }
 
-/* CAPTION */
 .caption{
   text-align:center;
-  font-style:italic;
   margin-top:10px;
+  font-style:italic;
   color:#caa2a2;
 }
 
 /* FIRMA */
 .signature{
-  text-align:right;
   margin-top:40px;
+  text-align:right;
   font-style:italic;
   opacity:0;
   transition:3s;
 }
+.signature.show{opacity:1;}
 </style>
 </head>
 
@@ -155,87 +168,78 @@ h1{
   <div class="heart black h4">❤</div>
 </div>
 
-<!-- CARTA -->
-<div class="letter" onclick="openLetter()" id="letter">
+<div class="wrapper">
 
-<h1>Para mi amada Belén</h1>
+  <!-- CARTA CERRADA -->
+  <div class="closed-letter" id="closed" onclick="openLetter()">❦</div>
 
-<div class="section">
-<p>
-“Desde el instante en que mi alma reconoció la tuya,  
-supe que el mundo había encontrado su forma.”
-</p>
-</div>
+  <!-- PERGAMINO -->
+  <div class="letter" id="letter">
 
-<div class="section photo">
-<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
-<div class="caption">
-Mi corazón aprendió tu nombre antes que mis labios.
-</div>
-</div>
+    <h1>Para mi amada Belén</h1>
 
-<div class="section">
-<p>
-“No te amo con prisa,  
-te amo con la paciencia de lo eterno.”
-</p>
-</div>
+    <div class="section">
+      <p>“Desde el instante en que mi alma reconoció la tuya, supe que no habría retorno.”</p>
+    </div>
 
-<div class="section photo">
-<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
-<div class="caption">
-Tu presencia es mi refugio.
-</div>
-</div>
+    <div class="section photo">
+      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
+      <div class="caption">Mi corazón aprendió tu nombre antes que mis labios.</div>
+    </div>
 
-<div class="section">
-<p>
-“Si la noche insiste en oscurecer,  
-que sea tu luz la que me nombre.”
-</p>
-</div>
+    <div class="section">
+      <p>“No te amo con prisa, te amo con la paciencia de lo eterno.”</p>
+    </div>
 
-<div class="section photo">
-<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
-<div class="caption">
-Aun en silencio, te elijo.
-</div>
-</div>
+    <div class="section photo">
+      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
+      <div class="caption">Tu presencia es mi refugio.</div>
+    </div>
 
-<div class="section">
-<p>
-“Para siempre no es una promesa,  
-es una decisión tomada cada día.”
-</p>
-</div>
+    <div class="section">
+      <p>“Si el mundo oscurece, que sea tu mano la última certeza.”</p>
+    </div>
 
-<div class="section photo">
-<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
-<div class="caption">
-Donde estés, ahí es mi hogar.
-</div>
-</div>
+    <div class="section photo">
+      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
+      <div class="caption">Aun en silencio, te elijo.</div>
+    </div>
 
-<div class="signature" id="sign">
-— Con todo mi amor,<br>Augusto
-</div>
+    <div class="section">
+      <p>“Para siempre no es promesa, es decisión.”</p>
+    </div>
 
+    <div class="section photo">
+      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
+      <div class="caption">Donde estés, ahí es mi hogar.</div>
+    </div>
+
+    <div class="signature" id="sign">
+      — Con todo mi amor,<br>Augusto
+    </div>
+
+  </div>
 </div>
 
 <script>
 let opened=false;
+
 function openLetter(){
   if(opened) return;
   opened=true;
 
+  document.getElementById("closed").style.display="none";
+  const letter=document.getElementById("letter");
+  letter.style.display="block";
+
   const sections=document.querySelectorAll(".section");
   sections.forEach((sec,i)=>{
-    setTimeout(()=>sec.style.opacity=1,800+(i*1100));
+    setTimeout(()=>sec.classList.add("show"),800+i*1100);
   });
 
   setTimeout(()=>{
-    document.getElementById("sign").style.opacity=1;
-  }, sections.length*1100+1000);
+    document.getElementById("sign").classList.add("show");
+  }, sections.length*1100+1200);
 }
 </script>
 
