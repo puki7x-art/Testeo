@@ -20,8 +20,8 @@ body{
 .wrapper{
   min-height:100vh;
   display:flex;
-  justify-content:center;
-  align-items:flex-start;
+  flex-direction:column;
+  align-items:center;
   padding:80px 20px;
 }
 
@@ -37,45 +37,44 @@ body{
   color:#7a2a38;
   opacity:0.35;
 }
-.ornament.tl{top:30px;left:40px;}
-.ornament.tr{top:30px;right:40px;}
-.ornament.bl{bottom:30px;left:40px;}
-.ornament.br{bottom:30px;right:40px;}
+.tl{top:30px;left:40px;}
+.tr{top:30px;right:40px;}
+.bl{bottom:30px;left:40px;}
+.br{bottom:30px;right:40px;}
 
 .heart{
   position:absolute;
-  font-size:24px;
+  font-size:26px;
   opacity:0.3;
-  color:#5a1f2a;
+  color:#7a2a38;
 }
-.heart.black{color:#140b0e;}
-.h1{top:15%;left:12%;}
-.h2{top:18%;right:14%;}
-.h3{bottom:18%;left:18%;}
-.h4{bottom:15%;right:16%;}
+.h1{top:18%;left:14%;}
+.h2{top:20%;right:16%;}
+.h3{bottom:20%;left:18%;}
+.h4{bottom:18%;right:16%;}
 
 /* CARTA CERRADA */
 .closed-letter{
   width:360px;
   height:220px;
   background:#2a0f14;
-  border:5px double #7a2a38;
+  border:6px double #7a2a38;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:60px;
-  color:#caa2a2;
+  font-size:64px;
+  color:#d4a3a3;
   cursor:pointer;
-  box-shadow:0 0 50px rgba(0,0,0,0.9);
+  box-shadow:0 0 60px rgba(0,0,0,0.9);
   transition:1s;
 }
 .closed-letter:hover{
-  transform:scale(1.03);
+  transform:scale(1.04);
 }
 
 /* PERGAMINO */
 .letter{
-  max-width:460px;
+  max-width:480px;
   background:
     repeating-linear-gradient(
       to bottom,
@@ -89,14 +88,14 @@ body{
   padding:60px;
   box-shadow:0 0 60px rgba(0,0,0,0.9);
   line-height:2;
-  margin-top:40px;
+  margin-top:50px;
   display:none;
 }
 
 /* TITULO */
 h1{
   font-family:"Great Vibes", cursive;
-  font-size:40px;
+  font-size:42px;
   text-align:center;
   margin-bottom:30px;
   color:#d4a3a3;
@@ -105,12 +104,11 @@ h1{
 /* SECCIONES */
 .section{
   opacity:0;
-  margin:32px 0;
+  margin:36px 0;
   transition:2s;
 }
 .section.show{opacity:1;}
 
-/* TEXTO */
 .section p{
   text-align:center;
   font-style:italic;
@@ -127,7 +125,7 @@ h1{
   width:100%;
   opacity:0.45;
   filter:grayscale(100%);
-  transition:1.4s;
+  transition:1.6s;
 }
 .photo img:hover{
   opacity:1;
@@ -143,7 +141,7 @@ h1{
 
 /* FIRMA */
 .signature{
-  margin-top:40px;
+  margin-top:50px;
   text-align:right;
   font-style:italic;
   opacity:0;
@@ -155,9 +153,9 @@ h1{
 
 <body>
 
-<!-- MUSICA -->
+<!-- MUSICA DE FONDO (PIANO ROMANTICO) -->
 <audio id="bgMusic" autoplay loop muted preload="auto">
-  <source src="PIANO.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f8a0c5c9b.mp3" type="audio/mpeg">
 </audio>
 
 <!-- DECORACION -->
@@ -168,9 +166,9 @@ h1{
   <div class="ornament br">❦</div>
 
   <div class="heart h1">❤</div>
-  <div class="heart black h2">❤</div>
+  <div class="heart h2">❤</div>
   <div class="heart h3">❤</div>
-  <div class="heart black h4">❤</div>
+  <div class="heart h4">❤</div>
 </div>
 
 <div class="wrapper">
@@ -183,57 +181,69 @@ h1{
 
     <h1>Para mi amada Belén</h1>
 
-    <div class="section"><p>“Desde el instante en que mi alma reconoció la tuya, supe que no habría retorno.”</p></div>
+    <div class="section">
+      <p>“Desde que mi alma aprendió tu nombre, el mundo dejó de ser silencio.”</p>
+    </div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
-      <div class="caption">Mi corazón aprendió tu nombre antes que mis labios.</div>
+      <div class="caption">Te reconocí antes de conocerte.</div>
     </div>
 
-    <div class="section"><p>“No te amo con prisa, te amo con la paciencia de lo eterno.”</p></div>
+    <div class="section">
+      <p>“No te amo con urgencia, te amo con eternidad.”</p>
+    </div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
-      <div class="caption">Tu presencia es mi refugio.</div>
+      <div class="caption">Mi hogar habita en tu mirada.</div>
     </div>
 
-    <div class="section"><p>“Si el mundo oscurece, que sea tu mano la última certeza.”</p></div>
+    <div class="section">
+      <p>“Aun cuando la noche caiga, mi elección sigue siendo tu nombre.”</p>
+    </div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
-      <div class="caption">Aun en silencio, te elijo.</div>
+      <div class="caption">Amarte es mi destino favorito.</div>
     </div>
 
-    <div class="section"><p>“Para siempre no es promesa, es decisión.”</p></div>
+    <div class="section">
+      <p>“Para siempre no es promesa, es devoción.”</p>
+    </div>
 
     <div class="section photo">
       <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
-      <div class="caption">Donde estés, ahí es mi hogar.</div>
+      <div class="caption">Donde estés, ahí pertenezco.</div>
     </div>
 
-    <div class="signature" id="sign">— Con todo mi amor,<br>Augusto</div>
+    <div class="signature" id="sign">
+      — Con todo mi amor,<br>Augusto
+    </div>
+
   </div>
 </div>
 
 <script>
-let opened=false;
-const music=document.getElementById("bgMusic");
+const music = document.getElementById("bgMusic");
+let opened = false;
 
 function fadeInMusic(){
-  music.muted=false;
-  music.volume=0;
+  music.muted = false;
+  music.volume = 0;
   music.play();
-  let v=0;
-  const fade=setInterval(()=>{
-    v+=0.02;
-    music.volume=Math.min(v,0.4);
-    if(v>=0.4) clearInterval(fade);
+
+  let v = 0;
+  const fade = setInterval(()=>{
+    v += 0.02;
+    music.volume = Math.min(v, 0.4);
+    if(v >= 0.4) clearInterval(fade);
   },120);
 }
 
 function openLetter(){
   if(opened) return;
-  opened=true;
+  opened = true;
 
   fadeInMusic();
 
@@ -243,12 +253,12 @@ function openLetter(){
 
   const sections=document.querySelectorAll(".section");
   sections.forEach((sec,i)=>{
-    setTimeout(()=>sec.classList.add("show"),800+i*1100);
+    setTimeout(()=>sec.classList.add("show"),800 + i*1200);
   });
 
   setTimeout(()=>{
     document.getElementById("sign").classList.add("show");
-  }, sections.length*1100+1200);
+  }, sections.length*1200 + 1200);
 }
 </script>
 
