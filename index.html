@@ -5,214 +5,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Belén & Augusto</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
-
 <style>
 body{
   margin:0;
-  background:radial-gradient(circle,#120b0e,#050304);
-  font-family:"Playfair Display", serif;
+  background:#0b0909;
+  font-family: "Georgia", serif;
   color:#e8dcdc;
   overflow-y:auto;
 }
 
-/* BOTON MUSICA */
-.music-btn{
-  position:fixed;
-  top:20px;
-  left:20px;
-  background:#2a0f14;
-  border:2px solid #7a2a38;
-  color:#d4a3a3;
-  padding:10px 16px;
-  font-size:14px;
-  cursor:pointer;
-  z-index:999;
-  box-shadow:0 0 20px rgba(0,0,0,0.8);
-}
-
-/* DECORACION */
-.decor{
+/* DECORACION FONDO */
+.hearts{
   position:fixed;
   inset:0;
   pointer-events:none;
+  background-image:
+    radial-gradient(#6b1f2b 1px, transparent 1px),
+    radial-gradient(#2a0f14 1px, transparent 1px);
+  background-size:40px 40px,60px 60px;
+  opacity:0.15;
 }
-.ornament{
-  position:absolute;
-  font-size:42px;
-  color:#7a2a38;
-  opacity:0.35;
-}
-.tl{top:30px;left:40px;}
-.tr{top:30px;right:40px;}
-.bl{bottom:30px;left:40px;}
-.br{bottom:30px;right:40px;}
 
-.heart{
-  position:absolute;
-  font-size:24px;
-  opacity:0.35;
-  color:#7a2a38;
-}
-.black{color:#140b0e;}
-.h1{top:18%;left:12%;}
-.h2{top:22%;right:14%;}
-.h3{bottom:22%;left:18%;}
-.h4{bottom:18%;right:16%;}
-
-/* CONTENEDOR */
-.wrapper{
+/* CARTA CERRADA */
+.center{
   min-height:100vh;
   display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:100px 20px;
-}
-
-/* CARTA */
-.closed-letter{
-  width:360px;
-  height:220px;
-  background:#2a0f14;
-  border:6px double #7a2a38;
-  display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:64px;
-  color:#d4a3a3;
-  cursor:pointer;
-  box-shadow:0 0 60px rgba(0,0,0,0.9);
+  align-items:center;
 }
 
+.envelope{
+  width:340px;
+  height:200px;
+  background:#2a0f14;
+  border:4px solid #6b1f2b;
+  cursor:pointer;
+  position:relative;
+  box-shadow:0 0 40px rgba(0,0,0,.8);
+}
+.envelope::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, transparent 50%, #3a141c 50%);
+}
+
+/* PERGAMINO */
 .letter{
-  max-width:460px;
+  max-width:420px;
+  margin:60px auto;
   background:#140b0e;
-  border:10px double #7a2a38;
-  padding:60px;
-  box-shadow:0 0 60px rgba(0,0,0,0.9);
+  padding:50px;
+  border:8px double #6b1f2b;
+  box-shadow:0 0 60px rgba(0,0,0,.9);
   line-height:2;
-  margin-top:50px;
-  display:none;
+  opacity:0;
+  transform:translateY(60px);
+  transition:2s;
 }
 
 h1{
-  font-family:"Great Vibes", cursive;
-  font-size:42px;
   text-align:center;
-  margin-bottom:30px;
-  color:#d4a3a3;
+  color:#c08b8b;
+  margin-bottom:40px;
 }
 
-.section{
-  opacity:0;
-  margin:32px 0;
-  transition:2s;
-}
-.section.show{opacity:1;}
-
+/* FOTOS FANTASMA */
 .photo{
-  border:3px solid #7a2a38;
-  padding:10px;
+  margin:30px 0;
+  padding:12px;
+  background:#1d0d11;
+  border:3px solid #6b1f2b;
 }
 .photo img{
   width:100%;
-  opacity:0.45;
-  filter:grayscale(100%);
+  opacity:0.65;
+  filter:grayscale(60%) sepia(40%) blur(.3px);
 }
 
-.caption{
+/* TEXTO */
+p{
+  font-size:16px;
   text-align:center;
-  margin-top:10px;
-  font-style:italic;
-  color:#caa2a2;
 }
 
-.signature{
+/* FIRMA */
+.signature, .final{
+  text-align:center;
   margin-top:40px;
-  text-align:right;
-  font-style:italic;
   opacity:0;
   transition:3s;
+  color:#c08b8b;
 }
-.signature.show{opacity:1;}
+
+/* BOTON MUSICA */
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:12px 18px;
+  background:#2a0f14;
+  color:#e8dcdc;
+  border:2px solid #6b1f2b;
+  font-family:Georgia, serif;
+  cursor:pointer;
+  z-index:9999;
+}
 </style>
 </head>
 
 <body>
 
-<!-- BOTON MUSICA -->
-<button class="music-btn" onclick="activateMusic()">🎵 Activar música</button>
+<div class="hearts"></div>
 
-<!-- MUSICA (SIN AUTOPLAY) -->
-<audio id="bgMusic" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_7c0b6b3e8e.mp3" type="audio/mpeg">
+<!-- MUSICA -->
+<audio id="bgMusic" preload="auto" loop>
+  <source src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/rrjrubinick-rrj-modern-love-dance-1-476655.mp3" type="audio/mpeg">
 </audio>
 
-<div class="decor">
-  <div class="ornament tl">❦</div>
-  <div class="ornament tr">❦</div>
-  <div class="ornament bl">❦</div>
-  <div class="ornament br">❦</div>
+<button id="musicBtn" onclick="playMusic()">🎵 Activar música</button>
+
+<!-- CARTA CERRADA -->
+<div class="center">
+  <div class="envelope" onclick="openLetter()"></div>
 </div>
 
-<div class="wrapper">
+<!-- CARTA ABIERTA -->
+<div class="letter" id="letter">
+<h1>Para mi amada Belén</h1>
 
-  <div class="closed-letter" onclick="openLetter()">❦</div>
+<div class="photo">
+<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
+</div>
 
-  <div class="letter" id="letter">
-    <h1>Para mi amada Belén</h1>
+<p id="text"></p>
 
-    <div class="section"><p>“Mi alma te reconoció antes que mi razón.”</p></div>
+<div class="photo">
+<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
+</div>
 
-    <div class="section photo">
-      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4134.jpeg">
-      <div class="caption">Eternamente tuyo</div>
-    </div>
+<div class="photo">
+<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
+</div>
 
-    <div class="section photo">
-      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
-      <div class="caption">Donde estás, es hogar</div>
-    </div>
+<p id="quote"></p>
 
-    <div class="section photo">
-      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4136.jpeg">
-      <div class="caption">Te elijo en cada vida</div>
-    </div>
+<div class="photo">
+<img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
+</div>
 
-    <div class="section photo">
-      <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
-      <div class="caption">Para siempre</div>
-    </div>
+<div class="signature" id="sign">
+— Con todo mi amor<br>Augusto
+</div>
 
-    <div class="signature" id="sign">— Augusto</div>
-  </div>
+<div class="final" id="final">
+Belén & Augusto<br>Para siempre
+</div>
 </div>
 
 <script>
-let musicStarted=false;
-const music=document.getElementById("bgMusic");
+const message = `Mi querida Belén,
 
-function activateMusic(){
-  if(musicStarted) return;
-  musicStarted=true;
-  music.volume=0.6;
-  music.play();
+Entre velas y suspiros antiguos,
+mi alma encontró reposo en la tuya.
+
+No fue destino,
+fue devoción eterna.`;
+
+const quote = `“El amor verdadero no se promete,
+se encarna en silencio.”`;
+
+function typeText(id,text,speed){
+  let i=0;
+  const el=document.getElementById(id);
+  el.textContent="";
+  const t=setInterval(()=>{
+    el.textContent+=text[i++];
+    if(i>=text.length)clearInterval(t);
+  },speed);
 }
 
 function openLetter(){
-  activateMusic();
+  document.querySelector(".center").style.display="none";
+  const l=document.getElementById("letter");
+  l.style.opacity=1;
+  l.style.transform="translateY(0)";
+  setTimeout(()=>typeText("text",message,45),600);
+  setTimeout(()=>typeText("quote",quote,55),4200);
+  setTimeout(()=>document.getElementById("sign").style.opacity=1,7000);
+  setTimeout(()=>document.getElementById("final").style.opacity=1,9000);
+}
 
-  document.querySelector(".closed-letter").style.display="none";
-  const letter=document.getElementById("letter");
-  letter.style.display="block";
-
-  document.querySelectorAll(".section").forEach((s,i)=>{
-    setTimeout(()=>s.classList.add("show"),600+i*800);
+function playMusic(){
+  const music=document.getElementById("bgMusic");
+  music.play().then(()=>{
+    document.getElementById("musicBtn").style.display="none";
+  }).catch(()=>{
+    alert("Tocá nuevamente para activar la música");
   });
-
-  setTimeout(()=>{
-    document.getElementById("sign").classList.add("show");
-  },4000);
 }
 </script>
 
