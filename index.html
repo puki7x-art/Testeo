@@ -10,55 +10,81 @@
 <style>
 body{
   margin:0;
-  background:#0b0909;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at center,#120b0e,#050304);
   font-family:"Playfair Display", serif;
   color:#e8dcdc;
   display:flex;
   justify-content:center;
-  padding:90px 0;
+  align-items:center;
+  overflow:hidden;
 }
 
-/* SOBRE */
-.envelope{
-  width:340px;
-  height:200px;
-  background:#2a0f14;
-  border:4px double #7a2a38;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  box-shadow:0 0 40px rgba(0,0,0,0.9);
-  font-size:64px;
-  color:#caa2a2;
+/* DECORACION GENERAL */
+.decor{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
 }
+
+/* CORAZONES */
+.heart{
+  position:absolute;
+  color:#5a1f2a;
+  font-size:26px;
+  opacity:0.35;
+}
+.heart.black{ color:#1a0e12; }
+
+.heart.h1{ top:8%; left:12%; }
+.heart.h2{ top:12%; right:15%; }
+.heart.h3{ bottom:10%; left:18%; }
+.heart.h4{ bottom:12%; right:14%; }
+
+/* ORNAMENTOS */
+.ornament{
+  position:absolute;
+  font-size:46px;
+  color:#7a2a38;
+  opacity:0.45;
+}
+.ornament.tl{ top:30px; left:40px; }
+.ornament.tr{ top:30px; right:40px; }
+.ornament.bl{ bottom:30px; left:40px; }
+.ornament.br{ bottom:30px; right:40px; }
 
 /* CARTA */
 .letter{
-  max-width:420px;
+  max-width:440px;
   background:
     repeating-linear-gradient(
       to bottom,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 1px,
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.035) 1px,
       transparent 2px,
       transparent 6px
     ),
     #140b0e;
   border:10px double #7a2a38;
-  padding:55px;
-  box-shadow:0 0 60px rgba(0,0,0,0.9);
-  opacity:0;
-  transform:scaleY(0.15);
-  transform-origin:top;
-  transition:2.5s ease;
+  padding:60px;
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.9),
+    inset 0 0 30px rgba(0,0,0,0.6);
   line-height:2;
+  cursor:pointer;
+  transform:scale(1);
+  transition:1.2s ease;
+  z-index:2;
+}
+.letter:hover{
+  transform:scale(1.02);
 }
 
 /* TITULO */
 h1{
   font-family:"Great Vibes", cursive;
-  font-size:38px;
+  font-size:40px;
   text-align:center;
   margin-bottom:30px;
   color:#d4a3a3;
@@ -67,8 +93,8 @@ h1{
 /* SECCIONES */
 .section{
   opacity:0;
-  margin:30px 0;
-  transition:2s;
+  margin:32px 0;
+  transition:2s ease;
 }
 
 /* FRASES */
@@ -88,14 +114,14 @@ h1{
   width:100%;
   opacity:0.45;
   filter:grayscale(100%);
-  transition:1.5s;
+  transition:1.4s;
 }
 .photo img:hover{
   opacity:1;
   filter:none;
 }
 
-/* TEXTO SOBRE FOTO */
+/* CAPTION */
 .caption{
   text-align:center;
   font-style:italic;
@@ -116,16 +142,28 @@ h1{
 
 <body>
 
-<div class="envelope" onclick="openLetter()">❦</div>
+<!-- DECORACION -->
+<div class="decor">
+  <div class="ornament tl">❦</div>
+  <div class="ornament tr">❦</div>
+  <div class="ornament bl">❦</div>
+  <div class="ornament br">❦</div>
 
-<div class="letter" id="letter">
+  <div class="heart h1">❤</div>
+  <div class="heart black h2">❤</div>
+  <div class="heart h3">❤</div>
+  <div class="heart black h4">❤</div>
+</div>
+
+<!-- CARTA -->
+<div class="letter" onclick="openLetter()" id="letter">
 
 <h1>Para mi amada Belén</h1>
 
 <div class="section">
 <p>
 “Desde el instante en que mi alma reconoció la tuya,  
-comprendí que no existe noche capaz de separarnos.”
+supe que el mundo había encontrado su forma.”
 </p>
 </div>
 
@@ -138,22 +176,22 @@ Mi corazón aprendió tu nombre antes que mis labios.
 
 <div class="section">
 <p>
-“No te amo como se ama una flor pasajera,  
-te amo como se ama aquello que es eterno.”
+“No te amo con prisa,  
+te amo con la paciencia de lo eterno.”
 </p>
 </div>
 
 <div class="section photo">
 <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4135.jpeg">
 <div class="caption">
-Tu presencia es mi refugio más antiguo.
+Tu presencia es mi refugio.
 </div>
 </div>
 
 <div class="section">
 <p>
-“Si el tiempo pretende arrebatarnos,  
-que sepa que el amor no obedece relojes.”
+“Si la noche insiste en oscurecer,  
+que sea tu luz la que me nombre.”
 </p>
 </div>
 
@@ -166,15 +204,15 @@ Aun en silencio, te elijo.
 
 <div class="section">
 <p>
-“Y si el mundo oscurece,  
-que sea tu mano la última certeza.”
+“Para siempre no es una promesa,  
+es una decisión tomada cada día.”
 </p>
 </div>
 
 <div class="section photo">
 <img src="https://raw.githubusercontent.com/puki7x-art/Testeo/refs/heads/main/IMG_4137.jpeg">
 <div class="caption">
-Para siempre no es una promesa, es una decisión.
+Donde estés, ahí es mi hogar.
 </div>
 </div>
 
@@ -185,20 +223,19 @@ Para siempre no es una promesa, es una decisión.
 </div>
 
 <script>
+let opened=false;
 function openLetter(){
-  document.querySelector(".envelope").style.display="none";
-  const letter=document.getElementById("letter");
-  letter.style.opacity=1;
-  letter.style.transform="scaleY(1)";
+  if(opened) return;
+  opened=true;
 
   const sections=document.querySelectorAll(".section");
   sections.forEach((sec,i)=>{
-    setTimeout(()=>sec.style.opacity=1,1200+(i*1200));
+    setTimeout(()=>sec.style.opacity=1,800+(i*1100));
   });
 
   setTimeout(()=>{
     document.getElementById("sign").style.opacity=1;
-  }, sections.length*1200+1500);
+  }, sections.length*1100+1000);
 }
 </script>
 
